@@ -1,5 +1,5 @@
 # Usar a imagem oficial do PostgreSQL
-FROM postgres:15
+FROM postgres:17
 
 # Definir variáveis de ambiente (mude conforme necessário)
 ENV POSTGRES_DB=adianti
@@ -11,4 +11,4 @@ RUN mkdir -p /docker-entrypoint-initdb.d
 COPY app/database/*.sql /docker-entrypoint-initdb.d/
 
 # Expor a porta padrão do PostgreSQL
-EXPOSE 5433
+EXPOSE 5432

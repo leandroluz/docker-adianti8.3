@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./app/database:/docker-entrypoint-initdb.d  # Copia os arquivos SQL para inicialização do PostgreSQL
     ports:
-      - "5432:5433"
+      - "5432:5432"
 
   app:
     build:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: adianti_db
       DATABASE_NAME: adianti
       DATABASE_USER: admin
       DATABASE_PASSWORD: admin
@@ -34,7 +34,7 @@ services:
       - "8080:80"
 
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:9.10.0
     container_name: adianti_pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
