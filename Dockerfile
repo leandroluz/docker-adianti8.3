@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libzip-dev \
     unzip \
-    libpq-dev
+    libpq-dev \
+    cron
 
 # Habilitar extensões do PHP necessárias para o Adianti Framework
 RUN docker-php-ext-install \
@@ -39,6 +40,13 @@ RUN a2enmod rewrite
 
 # Configuração do ambiente de trabalho
 WORKDIR /var/www/html
+
+# Cron job para executar o scheduler do Adianti a cada 5 minutos
+RUN echo "*/5 * * * * root cd /var/www/html && php cmd.php \"class=SystemScheduleService&method=run\" >> /var/log/adianti-schedule.log 2>&1" > /etc/cron.d/adianti-schedule \
+    && chmod 0644 /etc/cron.d/adianti-schedule
+
+# Iniciar cron e Apache ao subir o container
+CMD ["bash", "-c", "service cron start && apache2-foreground"]
 
 # Expor porta padrão do Apache
 EXPOSE 80
