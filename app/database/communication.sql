@@ -1,3 +1,5 @@
+SET search_path TO adianti;
+
 --- Create system_notification table
 CREATE TABLE system_notification (
     id int PRIMARY KEY NOT NULL,

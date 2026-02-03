@@ -1,3 +1,5 @@
+SET search_path TO adianti;
+
 --- Create system_group table
 CREATE TABLE system_group (
     id int PRIMARY KEY NOT NULL,

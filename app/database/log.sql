@@ -1,3 +1,5 @@
+SET search_path TO adianti;
+
 --- Create system_change_log table
 CREATE TABLE system_change_log (
     id int PRIMARY KEY NOT NULL,
@@ -146,4 +148,3 @@ CREATE INDEX sys_schedule_log_method_idx ON system_schedule_log(method);
 CREATE INDEX sys_sqlchanges_dbname_idx  ON system_sql_changes (db_name);
 CREATE INDEX sys_sqlchanges_sqldate_idx ON system_sql_changes (sql_date);
 CREATE INDEX sys_sqlchanges_sqlhash_idx ON system_sql_changes (sql_hash);
-
